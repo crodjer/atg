@@ -1,0 +1,6 @@
+around_the_globe.egg-info
+dist
+tmp
+*.pyc
+.dir-locals.el
+TAGS
