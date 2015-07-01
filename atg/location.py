@@ -3,6 +3,8 @@ Get the timezone based on the provided location.
 '''
 
 import json
+from pytz import timezone as l_timezone, UnknownTimeZoneError
+
 from urllib.parse import urlencode
 from urllib.request import urlopen
 from datetime import datetime
@@ -43,8 +45,16 @@ def timezone(location, time=None):
     Get the timezone for a location.
     '''
 
+    try:
+        return l_timezone(location)
+    except UnknownTimeZoneError:
+        pass
+
     timestamp = (time or datetime.now()).timestamp()
     coordinates = geocode(location)
 
-    return request("timezone", location="{lat},{lng}".format(**coordinates),
-                   timestamp=timestamp)['timeZoneId']
+    return l_timezone(request(
+        "timezone",
+        location="{lat},{lng}".format(**coordinates),
+        timestamp=timestamp
+    )['timeZoneId'])
