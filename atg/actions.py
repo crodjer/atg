@@ -44,7 +44,7 @@ def now(args):
     Tell the current time here and there.
     '''
     yield '{} in {}'.format(U.now_str(args.remote_tz), args.remote_tz)
-    yield '{} here'.format(U.now_str(args.here_tz))
+    # yield '{} here'.format(U.now_str(args.here_tz))
 
 @action
 def activity(args):
@@ -56,7 +56,7 @@ def activity(args):
         U.activity(args.remote_tz).status
     )
 
-DEFAULT_ACTIONS = [timezone, now, activity]
+DEFAULT_ACTIONS = [now, activity]
 @action
 def default(args):
     '''
