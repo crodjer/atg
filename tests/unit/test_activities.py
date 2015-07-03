@@ -16,8 +16,8 @@ class ActivitiesTest(unittest.TestCase):
         (5, A.sleep),
         (6, A.sleep),
         (7, A.sleep),
-        (8, A.free),
-        (9, A.free),
+        (8, A.available),
+        (9, A.available),
         (10, A.work),
         (11, A.work),
         (12, A.work),
@@ -26,11 +26,11 @@ class ActivitiesTest(unittest.TestCase):
         (15, A.work),
         (16, A.work),
         (17, A.work),
-        (18, A.free),
-        (19, A.free),
-        (20, A.free),
-        (21, A.free),
-        (22, A.free),
+        (18, A.available),
+        (19, A.available),
+        (20, A.available),
+        (21, A.available),
+        (22, A.available),
         (23, A.sleep)
     )
 
