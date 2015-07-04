@@ -119,7 +119,7 @@ Tests and CI integration is still being worked on. To run tests, execute:
 Bugs
 ----
 
-Probably lots. Please send us reports on the Github `issue tracker <https://github.com/crodjer/atz/issues>`. Patches are welcome too.
+Probably lots. Please send us reports on the Github `issue tracker <https://github.com/crodjer/atz/issues>`_. Patches are welcome too.
 
 .. _pytz: https://pypi.python.org/pypi/pytz
 .. _tzlocal: https://pypi.python.org/pypi/tzlocal
