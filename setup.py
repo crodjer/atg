@@ -52,7 +52,7 @@ setup(
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/crodjer/around-the-globe',
+    url='https://github.com/crodjer/atg',
 
     # Author details
     author='Rohan Jain',
