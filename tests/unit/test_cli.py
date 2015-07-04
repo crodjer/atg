@@ -39,22 +39,22 @@ class TestCli(unittest.TestCase):
         self.assertEqual(timezone(self.remote_tz), args.remote_tz)
         self.assertEqual(get_localzone(), args.here_tz)
         self.assertEqual({Activities.sleep.value}, set(args.dnd))
-        self.assertEqual({People.there, People.here}, set(args.convenient_to))
+        self.assertEqual({People.there, People.here}, set(args.convenient_for))
 
     def test_parse_dnd(self):
         args = self.parse_args('--dnd work --dnd sleep')
         self.assertEqual({Activities.work.value, Activities.sleep.value},
                          set(args.dnd))
 
-    def test_convenient_to(self):
+    def test_convenient_for(self):
         args = self.parse_args('-c here')
-        self.assertEqual({People.here}, set(args.convenient_to))
+        self.assertEqual({People.here}, set(args.convenient_for))
 
-        args = self.parse_args('--convenient-to there')
-        self.assertEqual({People.there}, set(args.convenient_to))
+        args = self.parse_args('--convenient-for there')
+        self.assertEqual({People.there}, set(args.convenient_for))
 
         args = self.parse_args('-c there -c here')
-        self.assertEqual({People.there, People.here}, set(args.convenient_to))
+        self.assertEqual({People.there, People.here}, set(args.convenient_for))
 
     def test_my_location(self):
         args = self.parse_args('-m ' + self.my_tz)

@@ -31,7 +31,7 @@ P.add_argument('--dnd', default=None, action='append',
                help='the do not disturb activities (default: sleep)',
                choices=[a.name for a in Activities])
 P.add_argument(
-    '-c', '--convenient-to', default=None, action='append',
+    '-c', '--convenient-for', default=None, action='append',
     choices=[p.name for p in People],
     help='which side\'s convenience should be considered (default: both)'
 )
@@ -56,10 +56,10 @@ def parse():
             for a in args.dnd
         ]
 
-    if args.convenient_to is None:
-        args.convenient_to = list(People)
+    if args.convenient_for is None:
+        args.convenient_for = list(People)
     else:
-        args.convenient_to = [People[g] for g in args.convenient_to]
+        args.convenient_for = [People[g] for g in args.convenient_for]
 
     args.remote = ' '.join(args.remote)
     args.remote_tz = timezone(args.remote)
@@ -77,4 +77,5 @@ def client():
     args = parse()
 
     for line in COMMANDS[args.command](args):
+
         print(line)

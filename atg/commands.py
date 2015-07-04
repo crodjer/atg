@@ -66,9 +66,9 @@ def schedule(args):
 
     def convenient(ht, rt):
         for a in args.dnd:
-            if a.is_current(ht) and U.People.here in args.convenient_to:
+            if a.is_current(ht) and U.People.here in args.convenient_for:
                 return False
-            elif a.is_current(rt) and U.People.there in args.convenient_to:
+            elif a.is_current(rt) and U.People.there in args.convenient_for:
                 return False
 
         return True

@@ -28,7 +28,7 @@ class TestCommands(unittest.TestCase):
         self.remote_tz = timezone('Europe/London')
         self.here_tz = timezone('Asia/Kolkata')
         self.dnd = [Activities.sleep.value]
-        self.convenient_to = [U.People.here, U.People.there]
+        self.convenient_for = [U.People.here, U.People.there]
 
     def output(self, cmd):
         '''

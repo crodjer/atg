@@ -99,7 +99,7 @@ You can always refer to the command usage through ``atg -h``.
       -h, --help            show this help message and exit
       --dnd {work,sleep,available}
                             the do not disturb activities (default: sleep)
-      -c {here,there}, --convenient-to {here,there}
+      -c {here,there}, --convenient-for {here,there}
                             which side's convenience should be considered
                             (default: both)
       -m MY_LOCATION, --my-location MY_LOCATION
