@@ -19,7 +19,6 @@ Definitions for actions supported by atg
 '''
 
 from atg import utils as U
-from .activities import Activities
 
 
 ACTIONS = {}
@@ -63,6 +62,8 @@ def default(args):
     The default action, executes a list of them.
     '''
 
-    for act in DEFAULT_ACTIONS:
-        for line in act(args):
-            yield line
+    return (
+        line
+        for act in DEFAULT_ACTIONS
+        for line in act(args)
+    )
