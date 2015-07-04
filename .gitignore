@@ -5,3 +5,4 @@ tmp
 .dir-locals.el
 TAGS
 .coverage
+build
