@@ -135,7 +135,7 @@ To set things up for development, create and activate a virtualenv_ and run
 Tests
 -----
 
-Tests and CI integration is still being worked on. To run tests, execute:
+Run tests via:
 
 .. code ::
 
