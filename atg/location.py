@@ -52,13 +52,19 @@ def geocode(location):
     '''
 
     try:
-        return request(
+        response = request(
             "geocode",
             address=location,
             sensor="false"
-        )['results'][0]['geometry']['location']
+        )
+
+        return response['results'][0]['geometry']['location']
     except IndexError:
-        raise LocationError('Could not find location: {}'.format(location))
+        raise LocationError(
+            'Could not find location: {} in {}'.format(
+                location, json.dumps(response, indent=2)
+            )
+        )
     except KeyError:                                       # pragma: no cover
         raise LocationError('Could not fetch coordinates') # pragma: no cover
 
