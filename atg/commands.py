@@ -1,4 +1,4 @@
-# atg: find what time is it around the globe
+# atg: a little timezone utility
 # Copyright (C) 2015 Rohan Jain
 #
 # This program is free software: you can redistribute it and/or modify
@@ -81,7 +81,7 @@ def contact(args):
 
     yield 'Convenient time slots:'
     for start, end, in time_slots:
-        yield "\t{} to {} here, {} to {} there".format(
+        yield "\t{} to {} here i.e. {} to {} there".format(
             start.strftime("%R"), end.strftime("%R"),
             timeline_map[start].strftime("%R"), timeline_map[end].strftime("%R")
         )

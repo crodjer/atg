@@ -1,4 +1,4 @@
-# atg: find what time is it around the globe
+# atg: a little timezone utility
 # Copyright (C) 2015 Rohan Jain
 #
 # This program is free software: you can redistribute it and/or modify
