@@ -18,13 +18,10 @@
 from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
-from configparser import ConfigParser
 from os import path
 from sys import version_info
 
 here = path.abspath(path.dirname(__file__))
-setup_cfg = ConfigParser()
-setup_cfg.read(path.join(here, 'setup.cfg'))
 license_str = \
     'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)'
 
@@ -32,11 +29,16 @@ license_str = \
 with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
-version = setup_cfg['bumpversion']['current_version']
+with open(path.join(here, 'setup.cfg')) as f:
+    version = [
+        line for line in f.readlines()
+        if line.strip().startswith('current_version')
+    ][0].split('=')[-1].strip()
+
 requirements = ['pytz', 'tzlocal']
 
 if version_info.major < 3:
-    requirements.append('enum')
+    requirements.append('enum34')
 
 setup(
     name='atg',
@@ -95,7 +97,7 @@ setup(
     # for example:
     # $ pip install -e .[dev,test]
     extras_require={
-        'dev': ['check-manifest', 'bumpversion'],
+        'dev': ['check-manifest', 'bumpversion', 'ipdb'],
         'test': ['nose', 'coverage', 'pylint'],
     },
 

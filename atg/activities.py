@@ -18,7 +18,7 @@
 Common major activities spanning a whole day
 '''
 
-from enum import Enum
+from enum import Enum, unique
 
 class Activity(object):
     '''
@@ -56,6 +56,7 @@ class Available(Activity):
     _status = 'available'
 
 
+@unique
 class Activities(Enum):
 
     work = Work()

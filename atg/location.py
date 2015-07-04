@@ -18,11 +18,18 @@
 Get the timezone based on the provided location.
 '''
 
+# pylint: disable=E0611,F0401
+
 import json
 from pytz import timezone as l_timezone, UnknownTimeZoneError
 
-from urllib.parse import urlencode
-from urllib.request import urlopen
+try:
+    from urllib.parse import urlencode
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
+    from urllib import urlencode
+
 from datetime import datetime
 
 

@@ -20,12 +20,13 @@ Basic utils used across atg
 
 from datetime import datetime, timedelta
 from itertools import groupby
-from enum import Enum
+from enum import Enum, unique
 
 from .activities import Activities
 
 HALF_HOUR = timedelta(minutes=30)
 
+@unique
 class People(Enum):
     '''
     Enum for the two locations.
@@ -86,13 +87,11 @@ def grouped_time(tl):
 
     time_pairs = zip(tl, tl[1:])
 
-    # Would have been so much cleaner in Haskell and point free style.
-    # Roughly, it is:
-    # map (list . snd) $ filter fst $ groupby time_pairs is_offset_by_half_hour
-    groups = map(
-        lambda g: list(snd(g)),
-        (filter(fst, groupby(time_pairs, is_offset_by_half_hour)))
-    )
+    groups = [
+        list(group)
+        for (continuous, group) in groupby(time_pairs, is_offset_by_half_hour)
+        if continuous
+    ]
 
     return [
         (fst(group[0]), snd(group[-1]))
