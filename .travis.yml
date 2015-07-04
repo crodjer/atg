@@ -6,7 +6,7 @@ python:
   - "3.3"
   - "3.4"
 install:
-  - pip install .[test]
+  - pip install -e .[test]
 script: nosetests --with-coverage --cover-package=atg
 after_success:
   - coveralls
