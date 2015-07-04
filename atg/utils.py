@@ -20,13 +20,12 @@ Basic utils used across atg
 
 from datetime import datetime, timedelta
 from itertools import groupby
-from enum import Enum, unique
+from enum import Enum
 
 from .activities import Activities
 
 HALF_HOUR = timedelta(minutes=30)
 
-@unique
 class People(Enum):
     '''
     Enum for the two locations.
