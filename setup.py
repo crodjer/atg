@@ -37,7 +37,7 @@ with open(path.join(here, 'setup.cfg')) as f:
 
 requirements = ['pytz', 'tzlocal']
 
-if version_info.major < 3:
+if (version_info.major, version_info.minor) < (3, 4):
     requirements.append('enum34')
 
 setup(
