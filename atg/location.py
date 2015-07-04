@@ -30,7 +30,7 @@ except ImportError:
     from urllib2 import urlopen
     from urllib import urlencode
 
-from datetime import datetime
+from time import time
 
 
 API_URL = "https://maps.googleapis.com/maps/api/{}/json?"
@@ -63,7 +63,7 @@ def geocode(location):
         raise LocationError('Could not fetch coordinates')
 
 
-def timezone(location, time=None):
+def timezone(location):
     '''
     Get the timezone for a location.
     '''
@@ -73,7 +73,7 @@ def timezone(location, time=None):
     except UnknownTimeZoneError:
         pass
 
-    timestamp = (time or datetime.now()).timestamp()
+    timestamp = time()
     coordinates = geocode(location)
 
     return l_timezone(request(
