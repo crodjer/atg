@@ -39,7 +39,7 @@ if version_info.major < 3:
     requirements.append('enum')
 
 setup(
-    name='around-the-globe',
+    name='atg',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
