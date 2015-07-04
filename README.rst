@@ -39,7 +39,7 @@ This is a Python package, which can be simply installed through pip:
    $ pip install --user atg
 
 
-and to install it globall, run:
+and to install it globally, run:
 
 
 .. code :: sh
@@ -77,7 +77,7 @@ use ``--dnd`` to customize this. For example, to avoid disturbing at work/sleep:
 
     $ atg Mountain View --dnd work --dnd sleep
 
-You can also specify who the timeslots should be convenient to. By default it
+You can also specify who the time slots should be convenient to. By default it
 will consider both. If you want the convenient timings for the remote location:
 
 .. code ::
