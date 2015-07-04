@@ -1,4 +1,4 @@
-# atg: a small timezone utility
+# atg: a little timezone utility
 # Copyright (C) 2015 Rohan Jain
 #
 # This program is free software: you can redistribute it and/or modify
@@ -42,9 +42,9 @@ P.add_argument('-x', '--command', default='default', choices=COMMANDS.keys(),
 P.add_argument('remote', type=str,
                help='the remote location', nargs='+')
 
-def client():
+def parse():
     '''
-    The command line client.
+    Parse the command line arguments
     '''
 
     args = P.parse_args()
@@ -67,6 +67,14 @@ def client():
         args.here, args.here_tz = args.my_location, timezone(args.my_location)
     else:
         args.here, args.here_tz = 'Here', get_localzone()
+
+    return args
+
+def client():
+    '''
+    The command line client.
+    '''
+    args = parse()
 
     for line in COMMANDS[args.command](args):
         print(line)
