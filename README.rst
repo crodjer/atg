@@ -5,7 +5,7 @@ Around the Globe
 A small timezone utility
 ------------------------
 
-.. code :: sh
+.. code ::
 
     $ atg Mountain View
     Their timezone is "America/Los_Angeles"
