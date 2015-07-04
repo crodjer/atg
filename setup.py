@@ -76,6 +76,7 @@ setup(
 
         license_str,
 
+        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
     ],
 
