@@ -24,11 +24,11 @@ import json
 from pytz import timezone as l_timezone, UnknownTimeZoneError
 
 try:
-    from urllib.parse import urlencode
-    from urllib.request import urlopen
-except ImportError:
-    from urllib2 import urlopen
-    from urllib import urlencode
+    from urllib.parse import urlencode # pragma: no cover
+    from urllib.request import urlopen # pragma: no cover
+except ImportError:                    # pragma: no cover
+    from urllib2 import urlopen        # pragma: no cover
+    from urllib import urlencode       # pragma: no cover
 
 from time import time
 
@@ -59,9 +59,8 @@ def geocode(location):
         )['results'][0]['geometry']['location']
     except IndexError:
         raise LocationError('Could not find location: {}'.format(location))
-    except KeyError:
-        raise LocationError('Could not fetch coordinates')
-
+    except KeyError:                                       # pragma: no cover
+        raise LocationError('Could not fetch coordinates') # pragma: no cover
 
 def timezone(location):
     '''

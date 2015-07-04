@@ -33,7 +33,6 @@ class TestUtils(unittest.TestCase):
             naive_now.replace(tzinfo=utc).timetuple()
         )
 
-
     def test_now_str(self):
         now = U.now(utc)
         self.assertEqual(now.strftime("%c"), U.now_str(utc), )
@@ -46,7 +45,7 @@ class TestUtils(unittest.TestCase):
 
     def test_timeline(self):
         delta = timedelta(minutes=30)
-        _now = datetime.now()
+        _now = datetime.utcnow()
         start = utc.localize(
             datetime(year=_now.year, month=_now.month, day=_now.day, hour=7)
         )

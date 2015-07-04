@@ -19,6 +19,8 @@ The command line interface for atg
 '''
 
 import argparse
+import sys
+
 from tzlocal import get_localzone
 
 from .commands import COMMANDS
@@ -70,12 +72,11 @@ def parse():
 
     return args
 
-def client():
+def client(out=sys.stdout):
     '''
     The command line client.
     '''
     args = parse()
 
     for line in COMMANDS[args.command](args):
-
-        print(line)
+        out.write(line + "\n")

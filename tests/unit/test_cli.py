@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# pylint: disable=F0401
+
 import unittest
 
 import sys
@@ -24,14 +26,22 @@ from atg.utils import People
 from pytz import timezone
 from tzlocal import get_localzone
 
+try:
+    from io import StringIO       # pragma: no cover
+except ImportError:               # pragma: no cover
+    from StringIO import StringIO # pragma: no cover
+
 class TestCli(unittest.TestCase):
 
     def setUp(self):
         self.remote_tz = 'Europe/London'
         self.my_tz = 'Asia/Kolkata'
 
-    def parse_args(self, args=None):
+    def setup_args(self, args=None):
         sys.argv = ['atg', self.remote_tz] + (args.split() if args else [])
+
+    def parse_args(self, args=None):
+        self.setup_args(args)
         return parse()
 
     def test_basic_parse(self):
@@ -59,3 +69,10 @@ class TestCli(unittest.TestCase):
     def test_my_location(self):
         args = self.parse_args('-m ' + self.my_tz)
         self.assertEqual(timezone(self.my_tz), args.here_tz)
+
+    def test_client(self):
+        out = StringIO()
+        self.setup_args('-x timezone')
+        out.write('foo')
+        client(out=out)
+        self.assertIn(self.remote_tz, out.getvalue())

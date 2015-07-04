@@ -17,7 +17,7 @@
 import unittest
 
 from pytz import timezone as l_timezone
-from atg.location import geocode, timezone
+from atg.location import geocode, timezone, LocationError
 
 class TestLocation(unittest.TestCase):
 
@@ -39,6 +39,14 @@ class TestLocation(unittest.TestCase):
 
         for location, coordinates, _ in self.COORDINATE_FIXTURES:
             self.assertEqual(geocode(location), coordinates)
+
+    def test_invalid_address(self):
+        '''
+        Invalid addresses should raise a exception.
+        '''
+
+        with self.assertRaises(LocationError):
+            geocode('963bccd9-1b56-4bc5-ad49-d6eb54651d19')
 
     def test_timezone(self):
         '''
