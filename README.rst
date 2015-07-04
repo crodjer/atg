@@ -5,6 +5,9 @@ Around the Globe
 A small timezone utility
 ------------------------
 
+.. image:: https://api.travis-ci.org/crodjer/atg.svg
+.. image:: https://coveralls.io/repos/crodjer/atg/badge.svg?branch=master
+
 .. code ::
 
     $ atg Mountain View
