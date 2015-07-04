@@ -63,6 +63,8 @@ def contact(args):
     reference = args.here_tz
     zipped_timeline = tuple(zip(U.timeline(args.here_tz, reference),
                                 U.timeline(args.remote_tz, reference)))
+    timeline_map = dict(zipped_timeline)
+
     def convenient(ht, rt):
         for a in args.dnd:
             if a.is_current(ht) and U.People.here in args.convenient_to:
@@ -79,9 +81,10 @@ def contact(args):
     ])
 
     yield 'Convenient time slots:'
-    for start, end in time_slots:
-        yield "\t{} to {} here".format(
-            start.strftime("%R"), end.strftime("%R")
+    for start, end, in time_slots:
+        yield "\t{} to {} here, {} to {} there".format(
+            start.strftime("%R"), end.strftime("%R"),
+            timeline_map[start].strftime("%R"), timeline_map[end].strftime("%R")
         )
 
 
