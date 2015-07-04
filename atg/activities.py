@@ -62,3 +62,13 @@ class Activities(Enum):
     work = Work()
     sleep = Sleep()
     available = Available()
+
+    @classmethod
+    def at(cls, time):
+        '''
+        The probable activity at given time.
+        '''
+
+        for activity in cls:
+            if activity.value.is_current(time):
+                return activity.value

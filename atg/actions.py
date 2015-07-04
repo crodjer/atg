@@ -20,7 +20,6 @@ Definitions for actions supported by atg
 
 from atg import utils as U
 
-
 ACTIONS = {}
 
 def action(fn):
@@ -55,7 +54,38 @@ def activity(args):
         U.activity(args.remote_tz).status
     )
 
-DEFAULT_ACTIONS = [now, activity]
+@action
+def contact(args):
+    '''
+    Get convenient time slots to possibly contact the other person.
+    '''
+
+    reference = args.here_tz
+    zipped_timeline = tuple(zip(U.timeline(args.here_tz, reference),
+                                U.timeline(args.remote_tz, reference)))
+    def convenient(ht, rt):
+        for a in args.dnd:
+            if a.is_current(ht) and U.Convenient.us in args.convenient_to:
+                return False
+            elif a.is_current(rt) and U.Convenient.them in args.convenient_to:
+                return False
+
+        return True
+
+    time_slots = U.grouped_time([
+        ht
+        for (ht, rt) in zipped_timeline
+        if convenient(ht, rt)
+    ])
+
+    yield 'Convenient time slots:'
+    for start, end in time_slots:
+        yield "\t{} to {} here".format(
+            start.strftime("%R"), end.strftime("%R")
+        )
+
+
+DEFAULT_ACTIONS = [now, activity, contact]
 @action
 def default(args):
     '''

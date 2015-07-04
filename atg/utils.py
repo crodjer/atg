@@ -18,10 +18,18 @@
 Basic utils used across atg
 '''
 
-from datetime import datetime
+from datetime import datetime, timedelta
+from itertools import groupby
+from enum import Enum, unique
 
 from .activities import Activities
 
+HALF_HOUR = timedelta(minutes=30)
+
+@unique
+class Convenient(Enum):
+    us = 0
+    them = 1
 
 def now(tz):
     '''
@@ -39,9 +47,52 @@ def activity(tz):
     '''
     Given a TZ, guess the most probable activity.
     '''
+    return Activities.at(now(tz))
 
-    current_time = now(tz)
+DAY_HOURS = tuple(range(0, 24))
 
-    for act in Activities:
-        if act.value.is_current(current_time):
-            return act.value
+def timeline(tz, reference, start=7):
+    '''
+    Get the timeline for a timezone.
+    '''
+
+    _now = datetime.now(tz)
+    start = reference.localize(
+        datetime(year=_now.year, month=_now.month, day=_now.day, hour=start)
+    ).astimezone(tz)
+
+    return [
+        (start + (HALF_HOUR * i))
+        for i in range(48)
+    ]
+
+def is_offset_by_half_hour(time_pair):
+    '''
+    Given two times, tell if they lie within half hour difference.
+    '''
+    t1, t2 = time_pair
+
+    return  (t2 - t1) == HALF_HOUR
+
+fst = lambda p: p[0]
+snd = lambda p: p[1]
+
+def grouped_time(tl):
+    '''
+    Provide the grouped times based on a timeline with half hour offsets.
+    '''
+
+    time_pairs = zip(tl, tl[1:])
+
+    # Would have been so much cleaner in Haskell and point free style.
+    # Roughly, it is:
+    # map (list . snd) $ filter fst $ groupby time_pairs is_offset_by_half_hour
+    groups = map(
+        lambda g: list(snd(g)),
+        (filter(fst, groupby(time_pairs, is_offset_by_half_hour)))
+    )
+
+    return [
+        (fst(group[0]), snd(group[-1]))
+        for group in groups
+    ]
