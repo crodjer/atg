@@ -21,7 +21,7 @@ The command line interface for atg
 import argparse
 from tzlocal import get_localzone
 
-from .actions import ACTIONS
+from .commands import COMMANDS
 from .activities import Activities
 from .location import timezone
 from .utils import People
@@ -37,8 +37,8 @@ P.add_argument(
 )
 P.add_argument('-m', '--my-location', default=None,
                help='specify your own location (default from system time)')
-P.add_argument('-a', '--action', default='default', choices=ACTIONS.keys(),
-               help='the action for atg to perform')
+P.add_argument('-x', '--command', default='default', choices=COMMANDS.keys(),
+               help='the command for atg to execute')
 P.add_argument('remote', type=str,
                help='the remote location', nargs='+')
 
@@ -68,5 +68,5 @@ def client():
     else:
         args.here, args.here_tz = 'Here', get_localzone()
 
-    for line in ACTIONS[args.action](args):
+    for line in COMMANDS[args.command](args):
         print(line)

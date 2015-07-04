@@ -20,30 +20,30 @@ Definitions for actions supported by atg
 
 from atg import utils as U
 
-ACTIONS = {}
+COMMANDS = {}
 
-def action(fn):
+def command(fn):
     '''
     Action decorator, just to keep a registry of actions.
     '''
-    ACTIONS[fn.__name__] = fn
+    COMMANDS[fn.__name__] = fn
     return fn
 
-@action
+@command
 def timezone(args):
     '''
     Display their timezone.
     '''
     yield 'Their timezone is "{}"'.format(args.remote_tz)
 
-@action
+@command
 def now(args):
     '''
     Tell the current time there.
     '''
     yield 'Their time: {}'.format(U.now_str(args.remote_tz))
 
-@action
+@command
 def status(args):
     '''
     Get the probable status for people there.
@@ -53,7 +53,7 @@ def status(args):
         U.status(args.remote_tz).status
     )
 
-@action
+@command
 def contact(args):
     '''
     Get convenient time slots to possibly contact the other person.
@@ -87,8 +87,8 @@ def contact(args):
         )
 
 
-DEFAULT_ACTIONS = [timezone, now, status, contact]
-@action
+DEFAULT_COMMANDS = [timezone, now, status, contact]
+@command
 def default(args):
     '''
     The default action, executes a list of them.
@@ -96,6 +96,6 @@ def default(args):
 
     return (
         line
-        for act in DEFAULT_ACTIONS
-        for line in act(args)
+        for cmd in DEFAULT_COMMANDS
+        for line in cmd(args)
     )
