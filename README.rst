@@ -61,6 +61,13 @@ Get all the information about the time at **Mountain View**:
         20:30 to 22:30 here i.e. 08:00 to 10:00 there
 
 
+If you want to avoid querying the timezone to Google's maps api everytime, you
+can directly use the timezone in further requests:
+
+.. code ::
+
+    $ atg America/Los_Angeles
+
 By default, ``atg`` calculates time slots based to avoid sleep periods. You can
 use ``--dnd`` to customize this. For example, to avoid disturbing at work/sleep:
 
