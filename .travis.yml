@@ -7,7 +7,7 @@ python:
   - "3.3"
   - "3.4"
 install:
-  - pip install coverage coveralls
-script: coverage run --source atg setup.py test && coverage report
+  - pip install nose coverage coveralls
+script: nosetests --with-coverage --cover-package=atg
 after_success:
   - coveralls
