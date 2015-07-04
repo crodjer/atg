@@ -27,9 +27,12 @@ from .activities import Activities
 HALF_HOUR = timedelta(minutes=30)
 
 @unique
-class Convenient(Enum):
-    us = 0
-    them = 1
+class People(Enum):
+    '''
+    Enum for the two locations.
+    '''
+    here = 0
+    there = 1
 
 def now(tz):
     '''

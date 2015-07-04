@@ -65,9 +65,9 @@ def contact(args):
                                 U.timeline(args.remote_tz, reference)))
     def convenient(ht, rt):
         for a in args.dnd:
-            if a.is_current(ht) and U.Convenient.us in args.convenient_to:
+            if a.is_current(ht) and U.People.here in args.convenient_to:
                 return False
-            elif a.is_current(rt) and U.Convenient.them in args.convenient_to:
+            elif a.is_current(rt) and U.People.there in args.convenient_to:
                 return False
 
         return True
