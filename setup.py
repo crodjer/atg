@@ -99,7 +99,7 @@ setup(
     # $ pip install -e .[dev,test]
     extras_require={
         'dev': ['check-manifest', 'bumpversion', 'ipdb'],
-        'test': ['nose', 'coverage', 'pylint'],
+        'test': ['nose', 'coverage', 'coveralls', 'pylint'],
     },
 
     # If there are data files included in your packages that need to be
