@@ -24,7 +24,7 @@ Features
  - Helps you schedule meetings by providing you spans of convenient times.
 
 Installation
-============
+------------
 
 This is a Python package, which can be simply installed through pip:
 
@@ -43,11 +43,11 @@ and to install it globall, run:
 
 
 Usage
-=====
+-----
 
 Get all the information about the time at **Mountain View**:
 
-.. code :: sh
+.. code ::
 
     $ atg Mountain View
     Their timezone is "America/Los_Angeles"
@@ -58,23 +58,17 @@ Get all the information about the time at **Mountain View**:
         20:30 to 22:30 here i.e. 08:00 to 10:00 there
 
 
-Do not disturbe
----------------
-
 By default, ``atg`` calculates time slots based to avoid sleep periods. You can
 use ``--dnd`` to customize this. For example, to avoid disturbing at work/sleep:
 
-.. code :: sh
+.. code ::
 
     $ atg Mountain View --dnd work --dnd sleep
-
-Convenience
------------
 
 You can also specify who the timeslots should be convenient to. By default it
 will consider both. If you want the convenient timings for the remote location:
 
-.. code :: sh
+.. code ::
 
     $ atg Mountain View -c there
 
@@ -82,7 +76,7 @@ will consider both. If you want the convenient timings for the remote location:
 You may also use the flag ``--convenient-for`` flag. If you don't care about the
 remote location's convenience:
 
-.. code :: sh
+.. code ::
 
     $ atg Mountain View --convenient-for here
 
@@ -91,6 +85,28 @@ Help
 ====
 
 You can always refer to the command usage through ``atg -h``.
+
+.. code ::
+
+    usage: atg [-h] [--dnd {work,sleep,available}] [-c {here,there}]
+               [-m MY_LOCATION] [-x {timezone,now,default,status,schedule}]
+               remote [remote ...]
+
+    positional arguments:
+      remote                the remote location
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      --dnd {work,sleep,available}
+                            the do not disturb activities (default: sleep)
+      -c {here,there}, --convenient-to {here,there}
+                            which side's convenience should be considered
+                            (default: both)
+      -m MY_LOCATION, --my-location MY_LOCATION
+                            specify your own location (default from system time)
+      -x {timezone,now,default,status,schedule}, --command {timezone,now,default,status,schedule}
+                            the command for atg to execute
+
 
 
 Developing and Testing
