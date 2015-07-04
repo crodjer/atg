@@ -41,7 +41,7 @@ def timezone(args):
 @action
 def now(args):
     '''
-    Tell the current time here and there.
+    Tell the current time there.
     '''
     yield '{} in {}'.format(U.now_str(args.remote_tz), args.remote_tz)
     # yield '{} here'.format(U.now_str(args.here_tz))
