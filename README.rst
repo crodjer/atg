@@ -117,7 +117,7 @@ Developing and Testing
 To set things up for development, create and activate a virtualenv_ and run
 
 
-.. code :: sh
+.. code ::
 
     $ pip install -e .[dev,test]
     $ python setup.py develop
@@ -127,7 +127,7 @@ Tests
 
 Tests and CI integration is still being worked on. To run tests, execute:
 
-.. code :: sh
+.. code ::
 
     $ nosetests
 
