@@ -1,0 +1,13 @@
+language: python
+sudo: false
+python:
+  - "2.6"
+  - "2.7"
+  - "3.2"
+  - "3.3"
+  - "3.4"
+install:
+  - pip install coverage coveralls
+script: coverage run --source atg setup.py test && coverage report
+after_success:
+  - coveralls

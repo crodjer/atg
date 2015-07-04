@@ -116,4 +116,6 @@ setup(
             'atg=atg.cli:client',
         ],
     },
+
+    test_suite="tests"
 )
