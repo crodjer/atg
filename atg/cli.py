@@ -35,8 +35,6 @@ P.add_argument(
     choices=[p.name for p in People],
     help='which side\'s convenience should be considered (default: both)'
 )
-P.add_argument('-t', '--their', default=False, action='store_true',
-               help='calculate everything from their reference frame')
 P.add_argument('-m', '--my-location', default=None,
                help='specify your own location (default from system time)')
 P.add_argument('-a', '--action', default='default', choices=ACTIONS.keys(),
@@ -69,10 +67,6 @@ def client():
         args.here, args.here_tz = args.my_location, timezone(args.my_location)
     else:
         args.here, args.here_tz = 'Here', get_localzone()
-
-    if args.their:
-        args.remote, args.here = args.here, args.remote
-        args.remote_tz, args.here_tz = args.here_tz, args.remote_tz
 
     for line in ACTIONS[args.action](args):
         print(line)
