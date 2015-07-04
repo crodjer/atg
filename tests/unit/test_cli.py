@@ -73,6 +73,5 @@ class TestCli(unittest.TestCase):
     def test_client(self):
         out = StringIO()
         self.setup_args('-x timezone')
-        out.write('foo')
         client(out=out)
         self.assertIn(self.remote_tz, out.getvalue())
