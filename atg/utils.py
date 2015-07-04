@@ -46,7 +46,7 @@ def now_str(tz):
     '''
     return now(tz).strftime("%c")
 
-def activity(tz):
+def status(tz):
     '''
     Given a TZ, guess the most probable activity.
     '''

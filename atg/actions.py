@@ -41,17 +41,16 @@ def now(args):
     '''
     Tell the current time there.
     '''
-    yield '{} in {}'.format(U.now_str(args.remote_tz), args.remote_tz)
-    # yield '{} here'.format(U.now_str(args.here_tz))
+    yield 'Their time: {}'.format(U.now_str(args.remote_tz))
 
 @action
-def activity(args):
+def status(args):
     '''
-    Get the probable activity people are doing there.
+    Get the probable status for people there.
     '''
 
     yield 'People there may be {}.'.format(
-        U.activity(args.remote_tz).status
+        U.status(args.remote_tz).status
     )
 
 @action
@@ -88,7 +87,7 @@ def contact(args):
         )
 
 
-DEFAULT_ACTIONS = [now, activity, contact]
+DEFAULT_ACTIONS = [timezone, now, status, contact]
 @action
 def default(args):
     '''
