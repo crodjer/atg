@@ -1,4 +1,4 @@
-# atg: a little timezone utility
+# atg: a small timezone utility
 # Copyright (C) 2015 Rohan Jain
 #
 # This program is free software: you can redistribute it and/or modify

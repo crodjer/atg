@@ -48,7 +48,7 @@ setup(
     # https://packaging.python.org/en/latest/single_source_version.html
     version=version,
 
-    description='Find what time is it around the globe.',
+    description='A small timezone utility',
     long_description=long_description,
 
     # The project's main homepage.
