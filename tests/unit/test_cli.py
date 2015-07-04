@@ -23,13 +23,9 @@ from atg.activities import Activities
 from atg.cli import parse, client
 from atg.utils import People
 
+from io import StringIO
 from pytz import timezone
 from tzlocal import get_localzone
-
-try:
-    from io import StringIO       # pragma: no cover
-except ImportError:               # pragma: no cover
-    from StringIO import StringIO # pragma: no cover
 
 class TestCli(unittest.TestCase):
 
@@ -51,6 +47,10 @@ class TestCli(unittest.TestCase):
         self.assertEqual({Activities.sleep.value}, set(args.dnd))
         self.assertEqual({People.there, People.here}, set(args.convenient_for))
 
+    def test_my_tz(self):
+        args = self.parse_args('-m ' + self.my_tz)
+        self.assertEqual(timezone(self.my_tz), args.here_tz)
+
     def test_parse_dnd(self):
         args = self.parse_args('--dnd work --dnd sleep')
         self.assertEqual({Activities.work.value, Activities.sleep.value},
@@ -65,10 +65,6 @@ class TestCli(unittest.TestCase):
 
         args = self.parse_args('-c there -c here')
         self.assertEqual({People.there, People.here}, set(args.convenient_for))
-
-    def test_my_location(self):
-        args = self.parse_args('-m ' + self.my_tz)
-        self.assertEqual(timezone(self.my_tz), args.here_tz)
 
     def test_client(self):
         out = StringIO()

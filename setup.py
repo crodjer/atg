@@ -29,10 +29,10 @@ license_str = \
 with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
-with open(path.join(here, 'setup.cfg')) as f:
+with open(path.join(here, 'setup.cfg'), encoding='utf-8') as f:
     version = [
         line for line in f.readlines()
-        if line.strip().startswith('current_version')
+        if line.strip().startswith(u'current_version')
     ][0].split('=')[-1].strip()
 
 requirements = ['pytz', 'tzlocal']

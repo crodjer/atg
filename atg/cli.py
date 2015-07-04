@@ -79,4 +79,4 @@ def client(out=sys.stdout):
     args = parse()
 
     for line in COMMANDS[args.command](args):
-        out.write(line + "\n")
+        out.writelines(line + u'\n')
