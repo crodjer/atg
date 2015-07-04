@@ -5,8 +5,8 @@ Around the Globe
 A small timezone utility
 ------------------------
 
-.. image:: https://api.travis-ci.org/crodjer/atg.svg
-.. image:: https://coveralls.io/repos/crodjer/atg/badge.svg?branch=master
+.. image:: https://api.travis-ci.org/crodjer/atg.svg :target: https://travis-ci.org/crodjer/atg
+.. image:: https://coveralls.io/repos/crodjer/atg/badge.svg?branch=master :target: https://coveralls.io/r/crodjer/atg?branch=master
 
 .. code ::
 
