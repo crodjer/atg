@@ -54,7 +54,7 @@ def status(args):
     )
 
 @command
-def contact(args):
+def schedule(args):
     '''
     Get convenient time slots to possibly contact the other person.
     '''
@@ -87,7 +87,7 @@ def contact(args):
         )
 
 
-DEFAULT_COMMANDS = [timezone, now, status, contact]
+DEFAULT_COMMANDS = [timezone, now, status, schedule]
 @command
 def default(args):
     '''

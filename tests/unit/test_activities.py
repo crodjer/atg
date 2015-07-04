@@ -1,3 +1,19 @@
+# atg: a small timezone utility
+# Copyright (C) 2015 Rohan Jain
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import unittest
 
 from atg.activities import Activities
@@ -53,3 +69,23 @@ class ActivitiesTest(unittest.TestCase):
                     o_activity.value.is_current(t),
                     '{} should not be {} time'.format(t, str(o_activity.name))
                 )
+
+
+    def test_get_activity_at_time(self):
+        '''
+        Check if correct activity is guessed given a time.
+        '''
+
+        self.assertEqual(Activities.at(time(hour=1)), A.sleep.value)
+        self.assertEqual(Activities.at(time(hour=10)), A.work.value)
+        self.assertEqual(Activities.at(time(hour=20)), A.available.value)
+
+
+    def test_status(self):
+        '''
+        Activities have correct statuses
+        '''
+
+        self.assertEqual(Activities.work.value.status, 'working')
+        self.assertEqual(Activities.sleep.value.status, 'sleeping')
+        self.assertEqual(Activities.available.value.status, 'available')

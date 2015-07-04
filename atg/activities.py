@@ -42,9 +42,6 @@ class Activity(object):
 
         return time.hour in self.hours
 
-    def __repr__(self):
-        return self.__class__.__name__
-
 class Work(Activity):
     hours = frozenset(range(10, 18))
 

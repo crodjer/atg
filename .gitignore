@@ -4,3 +4,4 @@ tmp
 *.pyc
 .dir-locals.el
 TAGS
+.coverage
