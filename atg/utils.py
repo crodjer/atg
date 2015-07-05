@@ -69,31 +69,22 @@ def timeline(tz, reference, start=7):
         for i in range(48)
     ]
 
-def is_offset_by_half_hour(time_pair):
-    '''
-    Given two times, tell if they lie within half hour difference.
-    '''
-    t1, t2 = time_pair
-
-    return  (t2 - t1) == HALF_HOUR
-
-fst = lambda p: p[0]
-snd = lambda p: p[1]
-
 def grouped_time(tl):
     '''
     Provide the grouped times based on a timeline with half hour offsets.
     '''
 
-    time_pairs = zip(tl, tl[1:])
+    # Python 3 doesn't have reduces, hence a for loop
+    acc = []
+    for time in tl:
+        if acc == []:
+            acc = [(time, time + HALF_HOUR)]
+            continue
 
-    groups = [
-        list(group)
-        for (continuous, group) in groupby(time_pairs, is_offset_by_half_hour)
-        if continuous
-    ]
+        prev_s, prev_e = acc[-1]
+        if prev_e == time:
+            acc[-1] = (prev_s, time + HALF_HOUR)
+        else:
+            acc.append((time, time + HALF_HOUR))
 
-    return [
-        (fst(group[0]), snd(group[-1]))
-        for group in groups
-    ]
+    return acc

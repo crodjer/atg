@@ -63,18 +63,32 @@ class TestUtils(unittest.TestCase):
         ], U.timeline(london_tz, utc))
 
     def test_grouped_time(self):
-        delta = timedelta(minutes=30)
-        start = utc.localize(
+        half_hour = timedelta(minutes=30)
+        base = utc.localize(
             datetime(year=2015, month=1, day=1, hour=7)
         )
-        tl = [
-            start, start + delta, start + delta * 2,
-            start + delta * 5, start + delta * 7,
-            start + delta * 9, start + delta * 10, start + delta * 11,
-            start + delta * 12
+        tl_deltas = [
+            0,
+            2, 3,
+            5,
+            7,
+            9, 10, 11, 12,
+            15
         ]
 
-        self.assertEqual([
-            (start, start + delta * 2),
-            (start + delta * 9, start + delta * 12)
-        ], U.grouped_time(tl))
+        range_deltas = [
+            (0, 1),
+            (2, 4),
+            (5, 6),
+            (7, 8),
+            (9, 13),
+            (15, 16)
+        ]
+        tl = [(base + half_hour * i) for i in tl_deltas]
+
+        ranges = [
+            (base + half_hour * i, base + half_hour * j)
+            for i, j in range_deltas
+        ]
+
+        self.assertEqual(ranges, U.grouped_time(tl))

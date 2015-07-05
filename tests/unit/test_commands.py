@@ -53,8 +53,8 @@ class TestCommands(unittest.TestCase):
         self.in_command(C.status, U.status(self.remote_tz).status)
 
     def test_schedule(self):
-        self.in_command(C.schedule, "12:30 to 22:30")
-        self.in_command(C.schedule, "08:00 to 18:00")
+        self.in_command(C.schedule, "12:30 to 23:00")
+        self.in_command(C.schedule, "08:00 to 18:30")
 
     def test_default(self):
         self.in_command(C.default, self.output(C.timezone))
