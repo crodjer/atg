@@ -78,19 +78,12 @@ use ``--dnd`` to customize this. For example, to avoid disturbing at work/sleep:
     $ atg Mountain View --dnd work --dnd sleep
 
 You can also specify who the time slots should be convenient to. By default it
-will consider both. If you want the convenient timings for the remote location:
+will consider both. You can use `-c/--convenient-for` flags to customize this
+behaviour. If you want the convenient timings for the remote location:
 
 .. code ::
 
     $ atg Mountain View -c there
-
-
-You may also use the flag ``--convenient-for`` flag. If you don't care about the
-remote location's convenience:
-
-.. code ::
-
-    $ atg Mountain View --convenient-for here
 
 
 Help
